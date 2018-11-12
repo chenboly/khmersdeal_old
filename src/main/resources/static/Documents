@@ -1,0 +1,21 @@
+Products:
+    - Product ID
+    - Product Name
+    - Product Price
+    - Product Images
+    - Store ID
+    - Status
+    - Created_Date
+
+ProductAndStore
+    - Product ID
+    - Store ID
+Stores:
+    - Store ID
+    - Store Name
+    - Store Address
+    - Store Phone Number
+    - Store Email
+    - Product ID
+    - Status
+    - Created_Date

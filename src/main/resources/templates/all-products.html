@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<br>
+<div class="container">
+    <a href="/product/add">Add New</a>
+</div>
+<br>
+<div class="container">
+<table class="table">
+    <caption>List of users</caption>
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Product Price</th>
+        <th scope="col">Product Images</th>
+        <th scope="col">Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product:${productList}">
+        <td th:text="${product.getId()}"></td>
+        <td th:text="${product.getProductName()}"></td>
+        <td th:text="${product.getProductDescription()}"></td>
+        <td th:text="${product.getProductPrice()}"></td>
+        <td>Images</td>
+        <td>
+            <a th:href="@{/product/viewone/{product_id} (product_id = ${product.getId()})}">View</a>
+            <a>Update</a>
+            <a>Delete</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+</body>
+</html>

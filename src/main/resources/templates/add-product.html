@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<br>
+<br>
+
+<div class="container">
+    <div>
+        <labe><h3>Add new product</h3></labe>
+    </div>
+    <br>
+    <form>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" id="productName" placeholder="Product Name">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="productPrice" placeholder="Product Price">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <textarea class="form-control" id="productDescription" rows="3" placeholder="Product Description"></textarea>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <select class="form-control" name="productCategories">
+                    <option value="Selected">Categories</option>
+                    <option value="drink/">Beverage</option>
+                    <option value="alcohol/">Alcohol</option>
+                    <option value="softDrink">Soft Drink</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="file" class="form-control-file" name="product-image-file">
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+
+</div>
+</body>
+</html>
