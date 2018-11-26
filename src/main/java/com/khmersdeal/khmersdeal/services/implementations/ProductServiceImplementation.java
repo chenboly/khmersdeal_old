@@ -29,5 +29,13 @@ public class ProductServiceImplementation implements ProductService {
         return this.productRepository.saveNewProduct(productDTO);
     }
 
+    @Override
+    public boolean updateProduct(ProductDTO productDTO) {
+        return this.productRepository.updateProduct(productDTO);
+    }
 
+    @Override
+    public boolean deleteProduct(Integer id) {
+        return this.productRepository.deleteProduct(id);
+    }
 }

@@ -11,22 +11,19 @@
 
 <div class="container">
     <div>
-        <labe><h3>Add new product</h3></labe>
+        <labe><h3>Update Product</h3></labe>
     </div>
     <br>
-    <form action="/product/add/submit" method="post" th:object="${addProduct}" enctype="multipart/form-data">
+    <form action="/product/update/submit" method="post" th:object="${updateProduct}" enctype="multipart/form-data">
         <div class="row">
             <div class="col">
                 <input type="number" class="form-control" th:field="*{id}" id="productId" placeholder="Product ID">
-                <!--<span style="solid-color: red" th:if="${#fields.hasErrors('id')}" th:error="*{id}"></span>-->
             </div>
             <div class="col">
                 <input type="text" class="form-control" th:field="*{productName}" id="productName" placeholder="Product Name">
-                <!--<span style="solid-color: red" th:if="${#fields.hasErrors('productName')}" th:error="*{productName}"></span>-->
             </div>
             <div class="col">
                 <input type="text" class="form-control" th:field="*{productPrice}" id="productPrice" placeholder="Product Price">
-                <!--<span style="solid-color: red" th:if="${#fields.hasErrors('productPrice')}" th:error="*{productPrice}"></span>-->
             </div>
         </div>
         <br>

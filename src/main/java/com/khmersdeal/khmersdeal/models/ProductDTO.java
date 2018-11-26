@@ -6,20 +6,16 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class ProductDTO {
-    @NotNull
     private Integer id;
-    @NotBlank
-    @NotEmpty
     private String ProductName;
     private String ProductDescription;
-    @NotNull
     private Double ProductPrice;
     private List<String> ProductImages;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(@NotNull Integer id, @NotBlank @NotEmpty String productName, String productDescription, @NotNull Double productPrice, List<String> productImages) {
+    public ProductDTO(Integer id, String productName, String productDescription, Double productPrice, List<String> productImages) {
         this.id = id;
         ProductName = productName;
         ProductDescription = productDescription;

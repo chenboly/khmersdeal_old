@@ -22,6 +22,7 @@ public class ProductRepository {
     public List<ProductDTO> getAllProduct(){
         return this.productDTOList;
     }
+
     public ProductDTO getOneProduct(Integer id){
         for (ProductDTO product: productDTOList)
             {
@@ -32,8 +33,30 @@ public class ProductRepository {
             }
         return null;
     }
+
     public boolean saveNewProduct(ProductDTO productDTO){
         return productDTOList.add(productDTO);
+    }
+
+    public boolean updateProduct(ProductDTO productDTO){
+        for (int i = 0; i <productDTOList.size() ; i++) {
+            if(productDTOList.get(i).getId().equals(productDTO.getId())){
+                productDTOList.set(i,productDTO);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteProduct(Integer id){
+        for (int i = 0; i <productDTOList.size() ; i++) {
+            if(productDTOList.get(i).getId().equals(id)){
+                productDTOList.remove(i);
+                return true;
+            }
+
+        }
+        return false;
     }
 
 }

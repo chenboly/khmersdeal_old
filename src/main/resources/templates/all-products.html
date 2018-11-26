@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="/resources/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete').on('click', function () {
+                var productId = $(this).attr('data-id');
+                if (confirm("Do you want to delete?")){
+                    window.location='http://localhost:8080/product/delete/' + productId;
+
+                }
+
+            });
+        });
+    </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
@@ -31,11 +45,15 @@
         <td th:text="${product.getProductName()}"></td>
         <td th:text="${product.getProductDescription()}"></td>
         <td th:text="${product.getProductPrice()}"></td>
-        <td>Images</td>
+        <td>
+            <img th:each="image: ${product.getProductImages()}"
+                 th:src="|/images/${image}|"
+            style="width: 75px; height: 75px; border: 1px; solid-color: red">
+        </td>
         <td>
             <a th:href="@{/product/viewone/{product_id} (product_id = ${product.getId()})}">View</a>
-            <a>Update</a>
-            <a>Delete</a>
+            <a th:href="@{/product/update/{update_id} (update_id = ${product.getId()})}">Update</a>
+            <button th:attr="data-id = ${product.getId()}" class="btn-delete">Delete</button>
         </td>
     </tr>
 
