@@ -6,7 +6,10 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class ProductDTO {
+    @NotNull
     private Integer id;
+    @NotBlank
+    @NotEmpty
     private String ProductName;
     private String ProductDescription;
     private Double ProductPrice;
@@ -15,7 +18,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Integer id, String productName, String productDescription, Double productPrice, List<String> productImages) {
+    public ProductDTO(@NotNull Integer id, @NotBlank @NotEmpty String productName, String productDescription, Double productPrice, List<String> productImages) {
         this.id = id;
         ProductName = productName;
         ProductDescription = productDescription;

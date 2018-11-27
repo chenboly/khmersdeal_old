@@ -53,26 +53,13 @@ public class ProductController {
         model.addAttribute("addProduct", new ProductDTO());
         return "add-product";
     }
-//    //the controller for add form submit button
-//    @PostMapping("/product/add/submit")
-//    public String submitProductAdded(@Valid ProductDTO productDTO, BindingResult bindingResult, @RequestParam("product-image-file") List<MultipartFile> productImageFile, @RequestParam("productCategories") String productCategoriesFolder){
-//        if (bindingResult.hasErrors()){
-//            System.out.println("Error occur");
-//            return "add-product";
-//        }
-//        //call upload image class
-//        //TODO: write upload image in different class
-//        //String fileName = this.fileUploadService.upload(productImageFile, productCategoriesFolder);
-//        productDTO.setProductImages(this.fileUploadService.upload(productImageFile, productCategoriesFolder));
-//        //add product
-//        this.productService.saveProduct(productDTO);
-//        return "redirect:/product/all"; //return to product all after save.
-//    }
-
     //the controller for add form submit button
     @PostMapping("/product/add/submit")
-    public String submitProductAdded(ProductDTO productDTO, @RequestParam("product-image-file") List<MultipartFile> productImageFile, @RequestParam("productCategories") String productCategoriesFolder){
-
+    public String submitProductAdded(@Valid ProductDTO productDTO, BindingResult bindingResult, @RequestParam("product-image-file") List<MultipartFile> productImageFile, @RequestParam("productCategories") String productCategoriesFolder){
+        if (bindingResult.hasErrors()){
+            System.out.println("Error occur");
+            return "add-product";
+        }
         //call upload image class
         //TODO: write upload image in different class
         //String fileName = this.fileUploadService.upload(productImageFile, productCategoriesFolder);

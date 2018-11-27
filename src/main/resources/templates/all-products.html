@@ -22,20 +22,26 @@
 <body>
 <br>
 <div class="container">
-    <a href="/product/add">Add New</a>
+    <div>
+        <a href="?language=km">Khmer</a>
+        <a href="?language=en">English</a>
+    </div>
+    <a href="/product/add"​ th:text="#{product.addnew}">Add New</a>
+
 </div>
 <br>
 <div class="container">
 <table class="table">
     <caption>List of users</caption>
+
     <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Product Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Product Price</th>
-        <th scope="col">Product Images</th>
-        <th scope="col">Actions</th>
+        <th scope="col"​ th:text="#{table.id}" ​​>ID</th>
+        <th scope="col"​​ th:text="#{table.name}">Product Name</th>
+        <th scope="col" th:text="#{table.description}">Description</th>
+        <th scope="col" th:text="#{table.price}">Product Price</th>
+        <th scope="col" th:text="#{table.images}">Product Images</th>
+        <th scope="col" th:text="#{table.action}">Actions</th>
 
     </tr>
     </thead>
