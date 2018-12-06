@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/master}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
 </head>
 <body>
-    <div class="container">
-    ID: <span th:text="${productID.getId()}">ID</span>
-    <br>
-    Name: <span th:text="${productID.getProductName()}">Product Name</span>
-    <br>
-    Description: <span th:text="${productID.getProductDescription()}">Product Description</span>
-    <br>
-    Price: <span th:text="${productID.getProductPrice()}">Product Price</span>
-    <br>
-    Images: <img th:type="${productID.getProductImages()}">Product Image</img>
-        
-
-    <br>
+    <div layout:fragment="fragment-content" class="content-wrapper">
+        <div class="container">
+            ID: <span th:text="${productID.getId()}">ID</span>
+            <br>
+            Name: <span th:text="${productID.getProductName()}">Product Name</span>
+            <br>
+            Description: <span th:text="${productID.getProductDescription()}">Product Description</span>
+            <br>
+            Price: <span th:text="${productID.getProductPrice()}">Product Price</span>
+            <br>
+            Images: <img th:type="${productID.getProductImages()}">Product Image</img>
+            <br>
+        </div>
     </div>
+
 </body>
 </html>

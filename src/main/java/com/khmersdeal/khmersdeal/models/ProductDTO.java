@@ -11,6 +11,7 @@ public class ProductDTO {
     @NotBlank
     @NotEmpty
     private String ProductName;
+
     private String ProductDescription;
     private Double ProductPrice;
     private List<String> ProductImages;

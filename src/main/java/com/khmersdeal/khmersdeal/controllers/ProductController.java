@@ -31,33 +31,37 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
     //view all product into table (all-products.html)
     @GetMapping("/product/all")
-    public String getAllProduct(Model model){
+    public String getAllProduct(Model model) {
         List<ProductDTO> productDTOList = productService.getAllProduct();
         model.addAttribute("productList", productDTOList);
-        return "all-products";
+        return "admin/products/all-products";
     }
+
     //view one product once click on view (view-product.html)
     @GetMapping("/product/viewone/{product_id}")
-    public String getViewOneProduct(@PathVariable("product_id") Integer id, Model model){
+    public String getViewOneProduct(@PathVariable("product_id") Integer id, Model model) {
         ProductDTO productDTO = productService.getOneProduct(id);
         model.addAttribute("productID", productDTO);
-        return "view-product";
+        return "admin/products/view-product";
     }
 
     //go to add new product page (add-product.html)
     @GetMapping("/product/add")
-    public String showAddProductForm(Model model){
+    public String showAddProductForm(Model model) {
         //ProductDTO productDTO = new ProductDTO();
-        model.addAttribute("addProduct", new ProductDTO());
+        model.addAttribute("productDTO", new ProductDTO());
         return "add-product";
     }
+
     //the controller for add form submit button
     @PostMapping("/product/add/submit")
-    public String submitProductAdded(@Valid ProductDTO productDTO, BindingResult bindingResult, @RequestParam("product-image-file") List<MultipartFile> productImageFile, @RequestParam("productCategories") String productCategoriesFolder){
-        if (bindingResult.hasErrors()){
+    public String submitProductAdded(@Valid ProductDTO productDTO, BindingResult bindingResult, Model model, @RequestParam("product-image-file") List<MultipartFile> productImageFile, @RequestParam("productCategories") String productCategoriesFolder) {
+        if (bindingResult.hasErrors()) {
             System.out.println("Error occur");
+            //model.addAttribute("addProduct", new ProductDTO());
             return "add-product";
         }
         //call upload image class
@@ -71,27 +75,24 @@ public class ProductController {
 
     //update product controller
     @GetMapping("/product/update/{id}")
-    public String showUpdateProductForm(@PathVariable("id") Integer id, Model model){
+    public String showUpdateProductForm(@PathVariable("id") Integer id, Model model) {
         ProductDTO productDTO = this.productService.getOneProduct(id);
         model.addAttribute("updateProduct", productDTO);
         return "update-product";
     }
 
     @PostMapping("/product/update/submit")
-    public String submitProductUpdated(ProductDTO productDTO){
+    public String submitProductUpdated(ProductDTO productDTO) {
         this.productService.updateProduct(productDTO);
         return "redirect:/product/all";
 
     }
 
     @GetMapping("/product/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Integer id){
+    public String deleteProduct(@PathVariable("id") Integer id) {
         this.productService.deleteProduct(id);
         return "redirect:/product/all";
     }
-
-
-
 
 
 }
