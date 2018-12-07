@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/master}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--<script src="/resources/jquery.min.js"></script>-->
+    <script layout:fragment="fragment-script">
+        $(document).ready(function ()
+        //start function
+        {
+            var tableRow = '';
+            $('.btn-delete').on('click', function ()
+                {
+                    var productId = $(this).attr('data-id');
+                    if (confirm("Do you want to delete?")){
+                        window.location='http://localhost:8080/product/delete/' + productId;
+
+                    }
+
+                });
+
+                //ajax read data from API
+
+            $.ajax
+                ({
+                    url:'/api/v1/products',
+                    method:'GET',
+                    // type:'',
+                    contentType:'application/json',
+                    success:function (response) {
+                        console.log(response);
+                        $.each(response, function (index, value) {
+                            tableRow += `
+                            <tr>
+                                <td>${value.id}</td>
+                                <td>${value.productName}</td>
+                                <td>${value.productDescription}</td>
+                                <td>${value.productPrice}</td>
+                                <td>
+                                    <img th:each="image: ${product.getProductImages()}"
+                                         th:src="|/images/${image}|"
+                                         style="width: 75px; height: 75px; border: 1px; solid-color: red">
+                                </td>
+                                <td>
+                                    <a href="@{/product/viewone/{product_id} (product_id = )}">View</a>
+                                    <a href="@{/product/update/{update_id} (update_id = )}">Update</a>
+                                    <button data-id = 1 class="btn-delete">Delete</button>
+                                </td>
+                            </tr>
+                            `;
+                        });
+
+                        $('table tbody').append(tableRow);
+                    },
+                    error:function (error) {
+                        console.log(error);
+                    }
+
+                });
+        //end function
+        });
+
+
+    </script>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+</head>
+<body>
+<br>
+
+<div layout:fragment="fragment-content" class="content-wrapper">
+    <div class="container" >
+        <div>
+            <a href="?language=km">Khmer</a>
+            <a href="?language=en">English</a>
+        </div>
+        <a href="/product/add"​ th:text="#{product.addnew}">Add New</a>
+
+    </div>
+    <br>
+    <div class="container">
+        <table class="table" id="my-table">
+            <caption>List of users</caption>
+
+            <thead>
+            <tr>
+                <th scope="col"​ th:text="#{table.id}" ​​>ID</th>
+                <th scope="col"​​ th:text="#{table.name}">Product Name</th>
+                <th scope="col" th:text="#{table.description}">Description</th>
+                <th scope="col" th:text="#{table.price}">Product Price</th>
+                <th scope="col" th:text="#{table.images}">Product Images</th>
+                <th scope="col" th:text="#{table.action}">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr th:each="product:${productList}">-->
+                <!--<td th:text="${product.getId()}"></td>-->
+                <!--<td th:text="${product.getProductName()}"></td>-->
+                <!--<td th:text="${product.getProductDescription()}"></td>-->
+                <!--<td th:text="${product.getProductPrice()}"></td>-->
+                <!--<td>-->
+                    <!--<img th:each="image: ${product.getProductImages()}"-->
+                         <!--th:src="|/images/${image}|"-->
+                         <!--style="width: 75px; height: 75px; border: 1px; solid-color: red">-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<a th:href="@{/product/viewone/{product_id} (product_id = ${product.getId()})}">View</a>-->
+                    <!--<a th:href="@{/product/update/{update_id} (update_id = ${product.getId()})}">Update</a>-->
+                    <!--<button th:attr="data-id = ${product.getId()}" class="btn-delete">Delete</button>-->
+                <!--</td>-->
+            <!--</tr>-->
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

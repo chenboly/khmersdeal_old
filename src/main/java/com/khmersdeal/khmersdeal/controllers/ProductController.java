@@ -39,6 +39,13 @@ public class ProductController {
         model.addAttribute("productList", productDTOList);
         return "admin/products/all-products";
     }
+    //another model to display list of product by ajax script
+    @GetMapping("product/ajax/all")
+    public String getAllProductAjax(Model model){
+        List<ProductDTO> productDTOList = productService.getAllProduct();
+        model.addAttribute("productList", productDTOList);
+        return "admin/products/ajax-view/all-products-ajax";
+    }
 
     //view one product once click on view (view-product.html)
     @GetMapping("/product/viewone/{product_id}")
