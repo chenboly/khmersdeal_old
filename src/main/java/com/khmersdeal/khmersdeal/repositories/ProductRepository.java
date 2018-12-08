@@ -9,9 +9,11 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
+
+    List<String> pro = Arrays.asList("image1.png", "image2.png");
     List<ProductDTO> productDTOList = new ArrayList<>();
     {
-        productDTOList.add(new ProductDTO(1,"CocaCola", "This is CocaCola",10.5, null));
+        productDTOList.add(new ProductDTO(1,"CocaCola", "This is CocaCola",10.5, pro));
         productDTOList.add(new ProductDTO(2,"Tiger","This is Tiger" ,20.5, null));
         productDTOList.add(new ProductDTO(3, "ABC","This is ABC" ,30.5, null));
         productDTOList.add(new ProductDTO(4, "RedWine", "This is red wine",40.3, null));

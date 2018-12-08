@@ -32,6 +32,15 @@
                     success:function (response) {
                         console.log(response);
                         $.each(response, function (index, value) {
+
+
+                            var proImage = '';
+
+                            $.each(value.productImages, function(index, value){
+                                       console.log(1111);
+                                       proImage += value;
+                                  });
+
                             tableRow += `
                             <tr>
                                 <td>${value.id}</td>
@@ -39,9 +48,7 @@
                                 <td>${value.productDescription}</td>
                                 <td>${value.productPrice}</td>
                                 <td>
-                                    <img th:each="image: ${product.getProductImages()}"
-                                         th:src="|/images/${image}|"
-                                         style="width: 75px; height: 75px; border: 1px; solid-color: red">
+                                    ${proImage}
                                 </td>
                                 <td>
                                     <a href="@{/product/viewone/{product_id} (product_id = )}">View</a>
